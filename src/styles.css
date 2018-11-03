@@ -1,0 +1,22 @@
+/* Master Styles */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~ng-snotify/styles/material.css";
+
+.link {
+  cursor: pointer;
+}
+
+.action {
+  margin: 10px;
+}
+
+.button {
+  margin-right: 10px !important;
+  margin-left: 10px !important;
+}
+
+body {
+  min-height: 900px;
+}

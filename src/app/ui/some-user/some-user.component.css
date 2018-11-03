@@ -1,0 +1,50 @@
+.inputs-container {
+  display: flex;
+  flex-direction: column;
+}
+
+  .inputs-container > * {
+    width: 100%;
+  }
+
+.area {
+  margin-top: 30px;
+}
+
+.job-title {
+  margin-top: 66px;
+}
+
+.tip-rate {
+  margin-top: 63px;
+}
+
+
+.buttons {
+  margin-top: 50px;
+}
+
+.status {
+  margin-top: 10px;
+  color: rgb(152, 152, 152);
+}
+
+
+.title {
+  margin-bottom: 20px;
+}
+
+.form {
+      width: 100%;
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+  .job-title {
+    margin-top: 10px;
+  }
+
+  .tip-rate {
+    margin-top: 0px;
+  }
+}

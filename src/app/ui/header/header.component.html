@@ -1,0 +1,22 @@
+<nav class="navbar navbar-dark bg-dark mb-5">
+  <a class="navbar-brand white">Test for Team International</a>
+  <div class="navbar-expand mr-auto">
+    <div class="navbar-nav">
+      <a (click)="Employees()"
+         [class.active]="router.url.startsWith('/employees')"
+         class="nav-item nav-link link active" >Employees</a>
+      <a [class.active]="router.url.startsWith('/some-user')"
+         class="nav-item nav-link">Some user</a>
+    </div>
+  </div>
+  <div class="navbar-expand ml-auto navbar-nav">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="https://github.com/cristiancpl" target="_blank">
+        <i class="fa fa-github"></i>
+      </a>
+      <a class="nav-item nav-link" href="https://www.facebook.com/cristiancamiloperezlopez" target="_blank">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </div>
+  </div>
+</nav>
