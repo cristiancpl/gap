@@ -2,26 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from '../../models/employees.model';
 import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { AppState } from '../../app.state';
-import { CountriesService } from '../../shared/countries.service';
 import { Country } from '../../models/countries.model';
 import { AREA_DATA } from '../../models/base.model';
-import * as EmployeeActions from '../../actions/employess.actions';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { SnotifyService } from 'ng-snotify';
+import { CountriesService } from '../../services/countries.service';
 
 enum Views { new, edit, view }
 enum JobTitleEnum { waitress = 4, dining = 5 }
 
 @Component({
-  selector: 'app-some-user',
-  templateUrl: './some-user.component.html',
-  styleUrls: ['./some-user.component.css'],
+  selector: 'app-some-car',
+  templateUrl: './some-car.component.html',
+  styleUrls: ['./some-car.component.css'],
   providers: [CountriesService]
 
 })
-export class SomeUserComponent implements OnInit {
+export class SomeCarComponent implements OnInit {
 
   private sub: any;
   view = Views.new;
@@ -38,12 +35,10 @@ export class SomeUserComponent implements OnInit {
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private store: Store<AppState>,
     private countriesService: CountriesService,
     private formBuilder: FormBuilder,
     private snotifyService: SnotifyService) {
 
-    this.employees = store.select('employee');
     this.maxDob = new Date();
     this.maxDob.setFullYear(this.maxDob.getFullYear() - 18);
   }
@@ -116,11 +111,9 @@ export class SomeUserComponent implements OnInit {
   save() {
     this.currentEmployee.age = this.calculateAge(this.currentEmployee.dob);
     if (this.view == this.views.new) {
-      this.store.dispatch(new EmployeeActions.AddEmployee(this.currentEmployee));
       this.snotifyService.success('The Employee has been added', 'Success');
     }
     else if (this.view == this.views.edit) {
-      this.store.dispatch(new EmployeeActions.EditEmployee(this.currentEmployee));
       this.snotifyService.success('The Employee has been updated', 'Success');
     }
 

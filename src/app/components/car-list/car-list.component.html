@@ -1,13 +1,13 @@
 <div class="row">
 
     <div class="col-md-2 col-sm-6">
-      <h3>Employees</h3>
+      <h3>Car list</h3>
     </div>
 
     <div class="col-md-3 col-sm-6">
       <mat-form-field>
         <input matInput #filterValue (keyup)="applyFilter()" placeholder="Search by anything">
-        <button mat-button *ngIf="dataSource.filter" matSuffix mat-icon-button aria-label="Clear" (click)="cleanFilter()">
+        <button mat-button  matSuffix mat-icon-button aria-label="Clear" (click)="cleanFilter()">
           <mat-icon>close</mat-icon>
         </button>
         <i matPrefix class="fa fa-search fa-lg search"></i>
@@ -72,7 +72,7 @@
     <div class="buttons">
       <button (click)="add()" mat-stroked-button>
         <i class="fa fa-plus action"></i>
-        Add new employee
+        Add new car
       </button>
     </div>
 

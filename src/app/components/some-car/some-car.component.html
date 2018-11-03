@@ -1,7 +1,7 @@
 <div class="row">
   <form [formGroup]="userForm" (ngSubmit)="save()" class="form">
     <div class="col-md-12 title">
-      <h3 *ngIf="view == views.new">New employee</h3>
+      <h3 *ngIf="view == views.new">New Car</h3>
       <h3 *ngIf="view == views.edit">Editing: {{currentEmployee?.name}}</h3>
       <h3 *ngIf="view == views.view">Viewing: {{currentEmployee?.name}}</h3>
     </div>
@@ -101,13 +101,6 @@
                                    class="area">
             <mat-button-toggle *ngFor="let area of areas" [value]="area">{{area.name}}</mat-button-toggle>
           </mat-button-toggle-group>
-
-          <app-job-title-child [area]="currentEmployee?.area"
-                               [job_title]="currentEmployee?.jobTitle"
-                               [disabled]="view == views.view"
-                               (selectJobTitle)="selectJobTitleParent($event)"
-                               class="job-title">
-          </app-job-title-child>
 
           <mat-form-field *ngIf="currentEmployee?.jobTitle?.id == jobsTitleEnum.waitress.valueOf() ||
                           currentEmployee?.jobTitle?.id == jobsTitleEnum.dining.valueOf()"
