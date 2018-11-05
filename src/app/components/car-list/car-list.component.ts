@@ -2,26 +2,30 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatTableDataSource, MatSort, MAT_DIALOG_DATA } from '@angular/material';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { Employee } from '../../models/employees.model';
 import { Router } from '@angular/router';
 import { SnotifyService } from 'ng-snotify';
 
 import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
+import { CarsService } from '../../services/cars.service';
+import { Car } from '../../models/car.model';
 
 @Component({
   selector: 'car-list',
   templateUrl: './car-list.component.html',
-  styleUrls: ['./car-list.component.css']
+  styleUrls: ['./car-list.component.css'],
+  providers: [CarsService]
 })
 export class CarListComponent implements OnInit {
 
   @ViewChild('filterValue') filterValueRef: ElementRef;
+  cars: Car[] = [];
 
   constructor(public dialog: MatDialog,
     private router: Router,
+    private carService: CarsService,
     private snotifyService: SnotifyService) {
-    
-    this.getEmployees();
+
+    this.getCars();
   }
 
   ngOnInit() {
@@ -29,16 +33,17 @@ export class CarListComponent implements OnInit {
   }
 
   applyFilter() {
-    //this.dataSource.filter = this.filterValueRef.nativeElement.value.trim().toLowerCase();
+    let filtro = this.cars.filter(x => x.brand.startsWith(this.filterValueRef.nativeElement.value.trim().toLowerCase()));
+    console.log(filtro);
   }
 
   cleanFilter() {
-    //this.filterValueRef.nativeElement.value = '';
-    //this.dataSource.filter = '';
+    this.filterValueRef.nativeElement.value = '';
+    this.getCars();
   }
 
   view(id: number) {
-    this.router.navigateByUrl('/some-car/view/' + id);
+    this.router.navigateByUrl('/some-car/' + id);
   }
 
   edit(id: number) {
@@ -49,24 +54,29 @@ export class CarListComponent implements OnInit {
     this.router.navigateByUrl('/some-car/new/');
   }
 
-  getEmployees() {
-    //this.employees.subscribe(employees =>
-    //  this.dataSource = new MatTableDataSource(employees)
-    //);
+  getCars() {
+    this.carService.GetCars().subscribe(data => {
+      if (data)
+        this.cars = this.orderByBrandAsc(data);
+      else
+        this.cars = [];
+    },
+      error => { alert(error); });
   }
 
-  delete(item: Employee) {
-    //const dialogRef = this.dialog.open(DialogConfirmComponent, {
-    //  disableClose: true,
-    //  data: item
-    //});
-    //dialogRef.afterClosed().subscribe(employee => {
-    //  if (employee) {
-    //    this.store.dispatch(new EmployeeActions.RemoveEmployee(employee));
-    //    this.snotifyService.success('The Employee has been deleted', 'Success');
-    //  }
-    //  this.getEmployees();
-    //});
+  getAvatar(url: string) {
+    return "url('" + url + "')";
+  }
+
+  orderByBrandAsc(array: any) {
+    return array.sort(
+      function compare(a, b) {
+        if (a.brand < b.brand)
+          return -1;
+        if (a.brand > b.brand)
+          return 1;
+        return 0;
+      });
   }
 
 }

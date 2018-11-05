@@ -1,137 +1,49 @@
 <div class="row">
-  <form [formGroup]="userForm" (ngSubmit)="save()" class="form">
-    <div class="col-md-12 title">
-      <h3 *ngIf="view == views.new">New Car</h3>
-      <h3 *ngIf="view == views.edit">Editing: {{currentEmployee?.name}}</h3>
-      <h3 *ngIf="view == views.view">Viewing: {{currentEmployee?.name}}</h3>
+
+  <div class="col-md-12 title">
+    <h3>{{currentCar?.brand}} - {{currentCar?.model}}</h3>
+  </div>
+
+  <div class="row" *ngIf="currentCar">
+
+    <div class="col-md-7">
+      <mat-card class="card">
+        <mat-card-header>
+          <div mat-card-avatar class="header-image" [ngStyle]="{'background-image': getAvatar(currentCar.pictures[0])}">
+          </div>
+          <mat-card-title>{{currentCar.model}}</mat-card-title>
+          <mat-card-subtitle>{{currentCar.brand}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image
+             src="{{currentCar.pictures[1]}}"
+             alt="{{currentCar.model}}">
+        <mat-card-content>
+          <h4>Price: {{currentCar.price | currency}}</h4>
+          <h4>Year: {{currentCar.year}}</h4>
+        </mat-card-content>
+      </mat-card>
     </div>
-    <div class="col-md-12">
-      <div class="row col-md-9 col-md-offset-5">
 
-        <div class="col-md-6 inputs-container">
 
-          <mat-form-field>
-            <input matInput
-                   [ngModel]="currentEmployee?.name"
-                   (ngModelChange)="currentEmployee.name = $event"
-                   name="name"
-                   formControlName="nameFormControl"
-                   placeholder="Name">
-            <mat-error *ngIf="nameFormControl.invalid">
-              Name is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <input matInput
-                   [ngModel]="currentEmployee?.dob"
-                   (ngModelChange)="currentEmployee.dob = $event"
-                   [matDatepicker]="pickerDob"
-                   name="dob"
-                   formControlName="dobFormControl"
-                   [max]="maxDob"
-                   placeholder="Dob">
-            <mat-error *ngIf="dobFormControl.invalid">
-              Dob is <strong>required</strong>
-            </mat-error>
-            <mat-datepicker-toggle matSuffix [for]="pickerDob"></mat-datepicker-toggle>
-            <mat-datepicker #pickerDob></mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-select [ngModel]="currentEmployee?.country"
-                        (ngModelChange)="currentEmployee.country = $event"
-                        name="country"
-                        formControlName="countryFormControl"
-                        placeholder="Country">
-              <mat-option *ngFor="let country of countries" [value]="country">
-                {{country.name}}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="countryFormControl.invalid">
-              Country is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <input matInput
-                   [ngModel]="currentEmployee?.username"
-                   (ngModelChange)="currentEmployee.username = $event"
-                   name="username"
-                   formControlName="usernameFormControl"
-                   placeholder="Username">
-            <mat-error *ngIf="usernameFormControl.errors?.required">
-              Username is <strong>required</strong>
-            </mat-error>
-            <mat-error *ngIf="usernameFormControl.errors?.pattern">
-              Username not valid
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <input matInput
-                   [ngModel]="currentEmployee?.hireDate"
-                   (ngModelChange)="currentEmployee.hireDate = $event"
-                   [matDatepicker]="pickerHireDate"
-                   name="hireDate"
-                   formControlName="hireDateFormControl"
-                   placeholder="Hire Date">
-            <mat-error *ngIf="hireDateFormControl.invalid">
-              Hire Date is <strong>required</strong>
-            </mat-error>
-            <mat-datepicker-toggle matSuffix [for]="pickerHireDate"></mat-datepicker-toggle>
-            <mat-datepicker #pickerHireDate></mat-datepicker>
-          </mat-form-field>
-
-          <mat-slide-toggle [ngModel]="currentEmployee?.status"
-                            (ngModelChange)="currentEmployee.status = $event"
-                            name="status"
-                            formControlName="statusFormControl"
-                            labelPosition="before"
-                            class="status">Status</mat-slide-toggle>
-        </div>
-
-        <div class="col-md-6 inputs-container">
-
-          <mat-button-toggle-group [ngModel]="currentEmployee?.area"
-                                   (ngModelChange)="currentEmployee.area = $event"
-                                   [ngModelOptions]="{standalone: true}"
-                                   [disabled]="view == views.view"
-                                   name="area"
-                                   class="area">
-            <mat-button-toggle *ngFor="let area of areas" [value]="area">{{area.name}}</mat-button-toggle>
-          </mat-button-toggle-group>
-
-          <mat-form-field *ngIf="currentEmployee?.jobTitle?.id == jobsTitleEnum.waitress.valueOf() ||
-                          currentEmployee?.jobTitle?.id == jobsTitleEnum.dining.valueOf()"
-                          class="tip-rate">
-            <input matInput
-                   [ngModel]="currentEmployee?.tipRate"
-                   (ngModelChange)="currentEmployee.tipRate = $event"
-                   [disabled]="view == views.view"
-                   name="tipRate"
-                   placeholder="Tip Rate">
-          </mat-form-field>
-
-        </div>
-
-      </div>
-
+    <div class="col-md-5">
+      <h1>Features</h1>
+      <mat-list>
+        <mat-list-item *ngFor="let feature of currentCar.features">
+          <mat-icon mat-list-icon>done_outline</mat-icon>
+          <h4 mat-line>{{feature}}</h4>
+        </mat-list-item>
+      </mat-list>
+        <div class="buttons">
+    <button mat-stroked-button (click)="back()" type="button" class="button">
+      <i class="fa fa-angle-left fa-lg action"></i>
+      Back
+    </button>
+  </div>
     </div>
-    <div class="buttons">
-      <button mat-button (click)="back()" type="button" class="button">
-        <i class="fa fa-angle-left fa-lg action"></i>
-        Back
-      </button>
-      <button mat-stroked-button
-              *ngIf="view != views.view"
-              [disabled]="userForm.invalid"
-              type="submit"
-              class="button">
-        Save
-      </button>
-    </div>
-  </form>
+
+  </div>
+
+
 </div>
 
 

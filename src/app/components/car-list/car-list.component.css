@@ -1,12 +1,3 @@
-table {
-  width: 100%;
-  margin-top: 10px;
-}
-
-th.mat-sort-header-sorted {
-  color: black;
-}
-
 .mat-form-field {
   font-size: 14px;
   width: 100%;
@@ -16,37 +7,22 @@ th.mat-sort-header-sorted {
   margin-right: 10px;
 }
 
-.name {
-  width: 40%;
+.card {
+  max-width: 400px;
 }
 
-.name-text {
-  flex-direction: column;
-  text-align: left;
+.header-image {
+  background-size: cover;
 }
 
-.age {
-  width: 10%
+.top {
+  margin-bottom: 20px;
 }
 
-.user-name {
-  width: 20%
+.button {
+  margin: 10px;
 }
 
-.hire-date {
-  width: 15%
-}
-
-.actions {
-  width: 15%
-}
-
-.table-header {
-  background-color: lightgrey;
-  font-weight: 800 !important;
-  /*text-align: left;*/
-}
-
-.buttons {
-  margin-top: 25px;
+.details {
+  top: -4px;
 }

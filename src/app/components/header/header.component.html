@@ -5,8 +5,8 @@
       <a (click)="Employees()"
          [class.active]="router.url.startsWith('/car-list')"
          class="nav-item nav-link link active" >Car list</a>
-      <a [class.active]="router.url.startsWith('/some-car')"
-         class="nav-item nav-link">Some car</a>
+      <a *ngIf="router.url.startsWith('/some-car')"
+         class="nav-item nav-link active">Some car</a>
     </div>
   </div>
   <div class="navbar-expand ml-auto navbar-nav">

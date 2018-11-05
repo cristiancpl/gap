@@ -112,7 +112,7 @@ import {
     RouterModule.forRoot([
       { path: '', redirectTo: 'car-list', pathMatch: 'full' },
       { path: 'car-list', component: CarListComponent },
-      { path: 'some-car/:view/:id', component: SomeCarComponent },
+      { path: 'some-car/:id', component: SomeCarComponent },
       { path: '**', redirectTo: 'car-list' }
     ])
 
