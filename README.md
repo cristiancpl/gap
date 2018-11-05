@@ -8,7 +8,7 @@ Run `npm install` to install all packages
 
 ## Development server
 
-Run `ng serve --open` for a dev server. Navigate to `http://localhost:4200/employees`. The app will automatically reload if you change any of the source files.
+Run `ng serve --open` or `npm run ng serve --open` for a dev server. Navigate to `http://localhost:4200/car-list`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
