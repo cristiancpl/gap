@@ -1,11 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { MatTableDataSource, MatSort, MAT_DIALOG_DATA } from '@angular/material';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { SnotifyService } from 'ng-snotify';
 
-import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
+import { DialogCompareComponent } from '../dialog-compare/dialog-compare.component';
 import { CarsService } from '../../services/cars.service';
 import { Car } from '../../models/car.model';
 
@@ -23,8 +20,7 @@ export class CarListComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
     private router: Router,
-    private carService: CarsService,
-    private snotifyService: SnotifyService) {
+    private carService: CarsService) {
   }
 
   ngOnInit() {
@@ -42,14 +38,6 @@ export class CarListComponent implements OnInit {
 
   view(id: number) {
     this.router.navigateByUrl('/some-car/' + id);
-  }
-
-  edit(id: number) {
-    this.router.navigateByUrl('/some-car/edit/' + id);
-  }
-
-  add() {
-    this.router.navigateByUrl('/some-car/new/');
   }
 
   getCars() {
@@ -77,6 +65,16 @@ export class CarListComponent implements OnInit {
           return 1;
         return 0;
       });
+  }
+
+  get carsSelect(): number {
+    return this.carsFilter.filter(x => x.select).length;
+  }
+
+  compare() {
+    this.dialog.open(DialogCompareComponent, {
+      data: this.carsFilter.filter(x => x.select)
+    });
   }
 
 }

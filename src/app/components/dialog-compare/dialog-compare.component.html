@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Comparing...</h1>
+<div mat-dialog-content>
+  <div *ngFor="let car of data; let first = first" class="col-md-4">
+    <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar class="header-image" [ngStyle]="{'background-image': getAvatar(car.pictures[0])}">
+        </div>
+        <mat-card-title>{{car.model}}</mat-card-title>
+        <mat-card-subtitle>{{car.brand}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image
+           (click)="view(car.id)"
+           src="{{car.pictures[1]}}"
+           class="img-circle"
+           width="220" height="150"
+           alt="{{car.model}}">
+      <mat-card-content>
+        <h6>{{car.model}}</h6>
+        <p [class.first]="first">Price: {{car.price | currency}}</p>
+        <p>Year: {{car.year}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button
+          (click)="back()"
+          class="button">
+    <i class="fa fa-angle-left fa-lg action"></i>
+    Back
+  </button>
+</div>

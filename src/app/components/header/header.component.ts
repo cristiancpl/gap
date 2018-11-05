@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ export class HeaderComponent {
 
   constructor(private router: Router) { }
 
-  Employees() {
-    this.router.navigateByUrl('/employees');
+  carList() {
+    this.router.navigateByUrl('/car-list');
   }
 }

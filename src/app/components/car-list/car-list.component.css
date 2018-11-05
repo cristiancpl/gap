@@ -9,15 +9,11 @@
 
 .card {
   max-width: 400px;
-  margin-bottom:20px;
+  margin-bottom: 20px;
 }
 
 .header-image {
   background-size: cover;
-}
-
-.top {
-  margin-bottom: 20px;
 }
 
 .button {
@@ -26,4 +22,11 @@
 
 .details {
   top: -4px;
+}
+
+.compare {
+  font-size: 14px;
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 20px;
 }

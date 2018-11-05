@@ -1,0 +1,13 @@
+.mat-dialog-content {
+  display: inline-flex;
+}
+
+.first {
+  color: green !important;
+  font-size: 20px;
+}
+
+.header-image {
+  background-size: cover;
+}
+

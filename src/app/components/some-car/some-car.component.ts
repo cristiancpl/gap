@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { SnotifyService } from 'ng-snotify';
 import { Car } from '../../models/car.model';
 import { CarsService } from '../../services/cars.service';
 
@@ -20,29 +17,23 @@ export class SomeCarComponent implements OnInit {
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private carService: CarsService,
-    private formBuilder: FormBuilder,
-    private snotifyService: SnotifyService) {
+    private carService: CarsService) {
   }
-
 
   ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe(params => {
-      let id = params['id'];
-      this.carService.GetCar(id).subscribe(data => {
-        this.currentCar = data;
+      let id: number = params['id'];
+      this.carService.GetCars().subscribe(data => {
+        this.currentCar = data.find(x => x.id == id);
       },
-        error => { alert(error); });
-
+      error => { alert(error); });
     });
 
   }
 
-
   getAvatar(url: string) {
     return "url('" + url + "')";
   }
-
 
   back() {
     this.router.navigateByUrl('/car-list');

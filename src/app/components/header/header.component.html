@@ -2,7 +2,7 @@
   <a class="navbar-brand white">Test for GAP</a>
   <div class="navbar-expand mr-auto">
     <div class="navbar-nav">
-      <a (click)="Employees()"
+      <a (click)="carList()"
          [class.active]="router.url.startsWith('/car-list')"
          class="nav-item nav-link link active" >Car list</a>
       <a *ngIf="router.url.startsWith('/some-car')"

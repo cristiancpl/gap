@@ -13,7 +13,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CarListComponent } from './components/car-list/car-list.component';
 import { SomeCarComponent } from './components/some-car/some-car.component';
-import { DialogConfirmComponent } from './components/dialog-confirm/dialog-confirm.component';
+import { DialogCompareComponent } from './components/dialog-compare/dialog-compare.component';
 
 import {
   MatFormFieldModule,
@@ -62,7 +62,7 @@ import {
     FooterComponent,
     CarListComponent,
     SomeCarComponent,
-    DialogConfirmComponent
+    DialogCompareComponent
   ],
   imports: [
     CommonModule,
@@ -117,7 +117,7 @@ import {
     ])
 
   ],
-  entryComponents: [DialogConfirmComponent],
+  entryComponents: [DialogCompareComponent],
   exports: [
     LayoutComponent,
   ],
