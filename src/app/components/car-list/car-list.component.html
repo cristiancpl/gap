@@ -5,13 +5,13 @@
   <div class="col-md-6 col-sm-12 top">
     <mat-form-field>
       <input matInput #filterValue (keyup)="applyFilter()" placeholder="Search by brand">
-      <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="cleanFilter()">
+      <button *ngIf="filterValueRef.nativeElement.value" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="cleanFilter()">
         <mat-icon>close</mat-icon>
       </button>
       <i matPrefix class="fa fa-search fa-lg search"></i>
     </mat-form-field>
   </div>
-  <div *ngFor="let car of cars" class="col-md-3 col-sm-5 col-xs-6">
+  <div *ngFor="let car of carsFilter" class="col-md-3 col-sm-5 col-xs-6">
     <mat-card class="card">
       <mat-card-header>
         <div mat-card-avatar class="header-image" [ngStyle]="{'background-image': getAvatar(car.pictures[0])}">
@@ -22,7 +22,8 @@
       <img mat-card-image
            (click)="view(car.id)"
            src="{{car.pictures[1]}}"
-           class="link"
+           class="img-circle link"
+           width="220" height="150"
            matTooltip="Details..."
            matTooltipPosition="above"
            alt="{{car.model}}">
@@ -33,7 +34,7 @@
       </mat-card-content>
       <mat-card-actions>
         <mat-checkbox class="button">Select</mat-checkbox>
-        <button mat-button (click)="view(car.id)" class="button details">Details...</button>
+        <button mat-stroked-button (click)="view(car.id)" class="button details">Details...</button>
       </mat-card-actions>
     </mat-card>
   </div>

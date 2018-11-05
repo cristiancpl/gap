@@ -19,27 +19,25 @@ export class CarListComponent implements OnInit {
 
   @ViewChild('filterValue') filterValueRef: ElementRef;
   cars: Car[] = [];
+  carsFilter: Car[] = [];
 
   constructor(public dialog: MatDialog,
     private router: Router,
     private carService: CarsService,
     private snotifyService: SnotifyService) {
-
-    this.getCars();
   }
 
   ngOnInit() {
-    //this.dataSource.sort = this.sort;
+    this.getCars();
   }
 
   applyFilter() {
-    let filtro = this.cars.filter(x => x.brand.startsWith(this.filterValueRef.nativeElement.value.trim().toLowerCase()));
-    console.log(filtro);
+    this.carsFilter = this.cars.filter(x => x.brand.toLowerCase().includes(this.filterValueRef.nativeElement.value.trim().toLowerCase()));
   }
 
   cleanFilter() {
     this.filterValueRef.nativeElement.value = '';
-    this.getCars();
+    this.carsFilter = this.cars;
   }
 
   view(id: number) {
@@ -60,6 +58,8 @@ export class CarListComponent implements OnInit {
         this.cars = this.orderByBrandAsc(data);
       else
         this.cars = [];
+
+      this.carsFilter = this.cars;
     },
       error => { alert(error); });
   }

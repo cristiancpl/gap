@@ -1,0 +1,5 @@
+.main {
+  padding: 16px;
+  margin-top: 60px;
+  margin-bottom: 60px; /* Add a bottom margin to avoid content overlay */
+}

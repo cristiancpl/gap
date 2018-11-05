@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "model": "X6 SPORT COUPE",
+    "model": "X6 SPORT",
     "year": "2019",
     "brand": "BMW",
     "price": "63.550",
@@ -19,7 +19,7 @@
   },
   {
     "id": "2",
-    "model": "M850i xDrive Coupe",
+    "model": "M850i xDrive",
     "year": "2018",
     "brand": "BMW",
     "price": "71.250",
